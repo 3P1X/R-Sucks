@@ -26,15 +26,15 @@ function __t0chB0dy(b0dy, m$g) {
   });
 }
 
-function get_$tu_l1st(cookie) {
+function get_$tu_l1st(cookie, year) {
   for (let i = 0; i <= 9; i++) {
-    get_by_1d(97, "00" + i, cookie);
+    get_by_1d(year, "00" + i, cookie);
   }
   for (let i = 10; i <= 99; i++) {
-    get_by_1d(97, "0" + i, cookie);
+    get_by_1d(year, "0" + i, cookie);
   }
   for (let i = 100; i < 371; i++) {
-    get_by_1d(97, i, cookie);
+    get_by_1d(year, i, cookie);
   }
 }
 
@@ -83,7 +83,7 @@ function post_Js3c(data) {
 
   request(options, function(error, response, body) {
     if (error) throw new Error(error);
-    get_$tu_l1st(__getJ_S3$$ion(response));
+    get_$tu_l1st(__getJ_S3$$ion(response), 95);
   });
 }
 
