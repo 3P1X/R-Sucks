@@ -1,4 +1,3 @@
-const axios = require("axios");
 const fs = require("fs");
 const request = require("request");
 
@@ -48,8 +47,19 @@ function __t0chB0dy(b0dy) {
 function post_r3s3rv3(data) {
   console.log(data);
   var options = {
-    method: "POST",
-    url: conf1g.url.r3s3rv3r0s3,
+    method: "GET",
+    url:
+      conf1g.url.r3s3rv3r0s3 +
+      `?weekStartDateTime=${data.weekStartDateTime}&remainCredit=-42292&method%3AdoReserve=Submit&selfChangeReserveId=&weekStartDateTimeAjx=${data.weekStartDateTimeAjx}&selectedSelfDefId=1&` +
+      `userWeekReserves%5B0%5D.selected=false&userWeekReserves%5B0%5D.selectedCount=0&userWeekReserves%5B0%5D.programId=165995&userWeekReserves%5B0%5D.mealTypeId=2&userWeekReserves%5B0%5D.programDateTime=${data.weekStartDateTime}&userWeekReserves%5B0%5D.selfId=1&userWeekReserves%5B0%5D.foodTypeId=597&` +
+      `userWeekReserves%5B1%5D.selected=false&userWeekReserves%5B1%5D.selectedCount=0&userWeekReserves%5B1%5D.programId=165979&userWeekReserves%5B1%5D.mealTypeId=2&userWeekReserves%5B1%5D.programDateTime=${data.weekStartDateTime}&userWeekReserves%5B1%5D.selfId=1&userWeekReserves%5B1%5D.foodTypeId=598&` +
+      `userWeekReserves%5B2%5D.selected=false&userWeekReserves%5B2%5D.selectedCount=0&userWeekReserves%5B2%5D.programId=166027&userWeekReserves%5B2%5D.mealTypeId=2&userWeekReserves%5B2%5D.programDateTime=1572726600000&userWeekReserves%5B2%5D.selfId=1&userWeekReserves%5B2%5D.foodTypeId=597&` +
+      `userWeekReserves%5B3%5D.selected=false&userWeekReserves%5B3%5D.selectedCount=0&userWeekReserves%5B3%5D.programId=166011&userWeekReserves%5B3%5D.mealTypeId=2&userWeekReserves%5B3%5D.programDateTime=1572726600000&userWeekReserves%5B3%5D.selfId=1&userWeekReserves%5B3%5D.foodTypeId=599&` +
+      `userWeekReserves%5B4%5D.selected=true&userWeekReserves%5B4%5D.programId=166043&userWeekReserves%5B4%5D.mealTypeId=2&userWeekReserves%5B4%5D.programDateTime=1572813000000&userWeekReserves%5B4%5D.selfId=1&userWeekReserves%5B4%5D.foodTypeId=597&userWeekReserves%5B4%5D.selectedCount=1&` +
+      `userWeekReserves%5B5%5D.programId=166059&userWeekReserves%5B5%5D.mealTypeId=2&userWeekReserves%5B5%5D.programDateTime=1572813000000&userWeekReserves%5B5%5D.selfId=1&userWeekReserves%5B5%5D.foodTypeId=598&` +
+      `userWeekReserves%5B6%5D.programId=167438&userWeekReserves%5B6%5D.mealTypeId=2&userWeekReserves%5B6%5D.programDateTime=1572899400000&userWeekReserves%5B6%5D.selfId=1&userWeekReserves%5B6%5D.foodTypeId=616&` +
+      `userWeekReserves%5B7%5D.selected=true&userWeekReserves%5B7%5D.programId=166075&userWeekReserves%5B7%5D.mealTypeId=2&userWeekReserves%5B7%5D.programDateTime=1572899400000&userWeekReserves%5B7%5D.selfId=1&userWeekReserves%5B7%5D.foodTypeId=599&userWeekReserves%5B7%5D.selectedCount=1&` +
+      `&_csrf=${data._csrf}`,
     headers: {
       "cache-control": "no-cache",
       Cookie: data.J_S3$$ion,
@@ -58,78 +68,71 @@ function post_r3s3rv3(data) {
       Accept: "*/*",
       "User-Agent": "__hahaholo__",
       "Content-Type": "application/x-www-form-urlencoded"
-    },
-    form: {
-      "method:showNextWeek": "Submit",
-      weekStartDateTime: data.weekStartDateTime,
-      weekStartDateTimeAjx: data.weekStartDateTimeAjx,
-      selectedSelfDefId: "1",
-      remainCredit: "-44292",
-      selfChangeReserveId: "",
-      _csrf: data._csrf
-
-      //   "userWeekReserves%5B0%5D.selected": "false",
-      //   "userWeekReserves%5B0%5D.selectedCount": "0",
-      //   "userWeekReserves%5B0%5D.id": "",
-      //   "userWeekReserves%5B0%5D.programId": "164662",
-      //   "userWeekReserves%5B0%5D.mealTypeId": "2",
-      //   "userWeekReserves%5B0%5D.programDateTime": "1572035400000",
-      //   "userWeekReserves%5B0%5D.selfId": "1",
-      //   "userWeekReserves%5B0%5D.foodTypeId": "597",
-      //   "userWeekReserves%5B0%5D.priorReserveDateStr": "null",
-      //   "userWeekReserves%5B0%5D.freeFoodSelected": "false",
-
-      //   "userWeekReserves%5B1%5D.selected": "false",
-      //   "userWeekReserves%5B1%5D.selectedCount": "0",
-      //   "userWeekReserves%5B1%5D.id": "",
-      //   "userWeekReserves%5B1%5D.programId": "164646",
-      //   "userWeekReserves%5B1%5D.mealTypeId": "2",
-      //   "userWeekReserves%5B1%5D.programDateTime": "1572035400000",
-      //   "userWeekReserves%5B1%5D.selfId": "1",
-      //   "userWeekReserves%5B1%5D.foodTypeId": "598",
-      //   "userWeekReserves%5B1%5D.priorReserveDateStr": "null",
-      //   "userWeekReserves%5B1%5D.freeFoodSelected": "false",
-
-      //   "userWeekReserves%5B2%5D.id": "",
-      //   "userWeekReserves%5B2%5D.programId": "164694",
-      //   "userWeekReserves%5B2%5D.mealTypeId": "2",
-      //   "userWeekReserves%5B2%5D.programDateTime": "1572208200000",
-      //   "userWeekReserves%5B2%5D.selfId": "1",
-      //   "userWeekReserves%5B2%5D.foodTypeId": "598",
-      //   "userWeekReserves%5B2%5D.priorReserveDateStr": "null",
-      //   "userWeekReserves%5B2%5D.freeFoodSelected": "false",
-
-      //   "userWeekReserves%5B3%5D.selected": "true",
-      //   "userWeekReserves%5B3%5D.id": "1732857",
-      //   "userWeekReserves%5B3%5D.programId": "164678",
-      //   "userWeekReserves%5B3%5D.mealTypeId": "2",
-      //   "userWeekReserves%5B3%5D.programDateTime": "1572208200000",
-      //   "userWeekReserves%5B3%5D.selfId": "1",
-      //   "userWeekReserves%5B3%5D.foodTypeId": "599",
-      //   "userWeekReserves%5B3%5D.priorReserveDateStr": "null",
-      //   "userWeekReserves%5B3%5D.selectedCount": "1",
-      //   "userWeekReserves%5B3%5D.freeFoodSelected": "false",
-
-      //   "userWeekReserves%5B4%5D.selected": "true",
-      //   "userWeekReserves%5B4%5D.id": "1731260",
-      //   "userWeekReserves%5B4%5D.programId": "164726",
-      //   "userWeekReserves%5B4%5D.mealTypeId": "2",
-      //   "userWeekReserves%5B4%5D.programDateTime": "1572381000000",
-      //   "userWeekReserves%5B4%5D.selfId": "1",
-      //   "userWeekReserves%5B4%5D.foodTypeId": "616",
-      //   "userWeekReserves%5B4%5D.priorReserveDateStr": "null",
-      //   "userWeekReserves%5B4%5D.selectedCount": "1",
-      //   "userWeekReserves%5B4%5D.freeFoodSelected": "false",
-
-      //   "userWeekReserves%5B5%5D.id": "",
-      //   "userWeekReserves%5B5%5D.programId": "164710",
-      //   "userWeekReserves%5B5%5D.mealTypeId": "2",
-      //   "userWeekReserves%5B5%5D.programDateTime": "1572381000000",
-      //   "userWeekReserves%5B5%5D.selfId": "1",
-      //   "userWeekReserves%5B5%5D.foodTypeId": "599",
-      //   "userWeekReserves%5B5%5D.priorReserveDateStr": "null",
-      //   "userWeekReserves%5B5%5D.freeFoodSelected": "false"
     }
+    // form: {
+    // "method:showNextWeek": "Submit",
+    // weekStartDateTime: data.weekStartDateTime,
+    // weekStartDateTimeAjx: data.weekStartDateTimeAjx,
+    // selectedSelfDefId: "1",
+    // selfChangeReserveId: "",
+    // _csrf: data._csrf,
+    // "userWeekReserves%5B0%5D.selected": "false",
+    // "userWeekReserves%5B0%5D.selectedCount": "0",
+    // "userWeekReserves%5B0%5D.id": "",
+    // "userWeekReserves%5B0%5D.programId": "164662",
+    // "userWeekReserves%5B0%5D.mealTypeId": "2",
+    // "userWeekReserves%5B0%5D.programDateTime": "1572035400000",
+    // "userWeekReserves%5B0%5D.selfId": "1",
+    // "userWeekReserves%5B0%5D.foodTypeId": "597",
+    // "userWeekReserves%5B0%5D.priorReserveDateStr": "null",
+    // "userWeekReserves%5B0%5D.freeFoodSelected": "false",
+    // "userWeekReserves%5B1%5D.selected": "false",
+    // "userWeekReserves%5B1%5D.selectedCount": "0",
+    // "userWeekReserves%5B1%5D.id": "",
+    // "userWeekReserves%5B1%5D.programId": "164646",
+    // "userWeekReserves%5B1%5D.mealTypeId": "2",
+    // "userWeekReserves%5B1%5D.programDateTime": "1572035400000",
+    // "userWeekReserves%5B1%5D.selfId": "1",
+    // "userWeekReserves%5B1%5D.foodTypeId": "598",
+    // "userWeekReserves%5B1%5D.priorReserveDateStr": "null",
+    // "userWeekReserves%5B1%5D.freeFoodSelected": "false",
+    // "userWeekReserves%5B2%5D.id": "",
+    // "userWeekReserves%5B2%5D.programId": "164694",
+    // "userWeekReserves%5B2%5D.mealTypeId": "2",
+    // "userWeekReserves%5B2%5D.programDateTime": "1572208200000",
+    // "userWeekReserves%5B2%5D.selfId": "1",
+    // "userWeekReserves%5B2%5D.foodTypeId": "598",
+    // "userWeekReserves%5B2%5D.priorReserveDateStr": "null",
+    // "userWeekReserves%5B2%5D.freeFoodSelected": "false",
+    // "userWeekReserves%5B3%5D.selected": "true",
+    // "userWeekReserves%5B3%5D.id": "1732857",
+    // "userWeekReserves%5B3%5D.programId": "164678",
+    // "userWeekReserves%5B3%5D.mealTypeId": "2",
+    // "userWeekReserves%5B3%5D.programDateTime": "1572208200000",
+    // "userWeekReserves%5B3%5D.selfId": "1",
+    // "userWeekReserves%5B3%5D.foodTypeId": "599",
+    // "userWeekReserves%5B3%5D.priorReserveDateStr": "null",
+    // "userWeekReserves%5B3%5D.selectedCount": "1",
+    // "userWeekReserves%5B3%5D.freeFoodSelected": "false",
+    // "userWeekReserves%5B4%5D.selected": "true",
+    // "userWeekReserves%5B4%5D.id": "1731260",
+    // "userWeekReserves%5B4%5D.programId": "164726",
+    // "userWeekReserves%5B4%5D.mealTypeId": "2",
+    // "userWeekReserves%5B4%5D.programDateTime": "1572381000000",
+    // "userWeekReserves%5B4%5D.selfId": "1",
+    // "userWeekReserves%5B4%5D.foodTypeId": "616",
+    // "userWeekReserves%5B4%5D.priorReserveDateStr": "null",
+    // "userWeekReserves%5B4%5D.selectedCount": "1",
+    // "userWeekReserves%5B4%5D.freeFoodSelected": "false",
+    // "userWeekReserves%5B5%5D.id": "",
+    // "userWeekReserves%5B5%5D.programId": "164710",
+    // "userWeekReserves%5B5%5D.mealTypeId": "2",
+    // "userWeekReserves%5B5%5D.programDateTime": "1572381000000",
+    // "userWeekReserves%5B5%5D.selfId": "1",
+    // "userWeekReserves%5B5%5D.foodTypeId": "599",
+    // "userWeekReserves%5B5%5D.priorReserveDateStr": "null",
+    // "userWeekReserves%5B5%5D.freeFoodSelected": "false"
+    // }
   };
 
   request(options, function(error, response, body) {
