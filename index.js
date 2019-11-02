@@ -34,6 +34,15 @@ function __getStart__w33k(b0dy) {
   return b0dy.substring(start, i);
 }
 
+function __get_cr3d1t(b0dy) {
+  let start = b0dy.search('name="remainCredit" value="') + 27;
+  let i;
+  for (i = start; ; i++) {
+    if (b0dy.charAt(i) === '"') break;
+  }
+  return b0dy.substring(start, i);
+}
+
 function __t0chB0dy(b0dy) {
   fs.writeFile("./index.html", b0dy, function(err) {
     if (err) {
@@ -44,22 +53,67 @@ function __t0chB0dy(b0dy) {
   });
 }
 
+function __get_pr1ce(b0dy, index) {
+  let start =
+    b0dy.search(`this, 'userWeekReserves.selectedCount${index}', '`) + 42;
+  let i;
+  for (i = start; ; i++) {
+    if (b0dy.charAt(i) === "'") break;
+  }
+  return b0dy.substring(start, i);
+}
+
+function __get_data(b0dy, index) {
+  let start = b0dy.search(`id="hiddenSelectedCount${index}"`);
+  return {
+    programId: b0dy.substring(start + 823, start + 829),
+    time: b0dy.substring(start + 1537, start + 1550),
+    foodTypeId: b0dy.substring(start + 2249, start + 2252),
+    price: __get_pr1ce(b0dy, index)
+  };
+}
+
+function __get_w33k_1nf0(b0dy) {
+  let i = 0;
+  let arr = [];
+  while (b0dy.includes(`id="hiddenSelectedCount${i}"`)) {
+    arr.push(__get_data(b0dy, i));
+    i++;
+  }
+
+  return arr;
+}
+
+function __get_param(data) {
+  let params = "";
+  for (let i = 0; i < data.length; i += 2) {
+    params +=
+      `userWeekReserves%5B${i}%5D.programId=${data[i].programId}&` +
+      `userWeekReserves%5B${i}%5D.mealTypeId=2&` +
+      `userWeekReserves%5B${i}%5D.programDateTime=${data[i].time}&` +
+      `userWeekReserves%5B${i}%5D.selfId=1&` +
+      `userWeekReserves%5B${i}%5D.foodTypeId=${data[i].foodTypeId}&` +
+      `userWeekReserves%5B${i}%5D.selected=true&` +
+      `userWeekReserves%5B${i}%5D.selectedCount=1&`;
+    params +=
+      `userWeekReserves%5B${i + 1}%5D.programId=${data[i + 1].programId}&` +
+      `userWeekReserves%5B${i + 1}%5D.mealTypeId=2&` +
+      `userWeekReserves%5B${i + 1}%5D.programDateTime=${data[i + 1].time}&` +
+      `userWeekReserves%5B${i + 1}%5D.selfId=1&` +
+      `userWeekReserves%5B${i + 1}%5D.foodTypeId=${data[i + 1].foodTypeId}&`;
+  }
+  return params;
+}
+
 function post_r3s3rv3(data) {
   console.log(data);
   var options = {
     method: "GET",
     url:
       conf1g.url.r3s3rv3r0s3 +
-      `?weekStartDateTime=${data.weekStartDateTime}&remainCredit=-42292&method%3AdoReserve=Submit&selfChangeReserveId=&weekStartDateTimeAjx=${data.weekStartDateTimeAjx}&selectedSelfDefId=1&` +
-      `userWeekReserves%5B0%5D.selected=false&userWeekReserves%5B0%5D.selectedCount=0&userWeekReserves%5B0%5D.programId=165995&userWeekReserves%5B0%5D.mealTypeId=2&userWeekReserves%5B0%5D.programDateTime=${data.weekStartDateTime}&userWeekReserves%5B0%5D.selfId=1&userWeekReserves%5B0%5D.foodTypeId=597&` +
-      `userWeekReserves%5B1%5D.selected=false&userWeekReserves%5B1%5D.selectedCount=0&userWeekReserves%5B1%5D.programId=165979&userWeekReserves%5B1%5D.mealTypeId=2&userWeekReserves%5B1%5D.programDateTime=${data.weekStartDateTime}&userWeekReserves%5B1%5D.selfId=1&userWeekReserves%5B1%5D.foodTypeId=598&` +
-      `userWeekReserves%5B2%5D.selected=false&userWeekReserves%5B2%5D.selectedCount=0&userWeekReserves%5B2%5D.programId=166027&userWeekReserves%5B2%5D.mealTypeId=2&userWeekReserves%5B2%5D.programDateTime=1572726600000&userWeekReserves%5B2%5D.selfId=1&userWeekReserves%5B2%5D.foodTypeId=597&` +
-      `userWeekReserves%5B3%5D.selected=false&userWeekReserves%5B3%5D.selectedCount=0&userWeekReserves%5B3%5D.programId=166011&userWeekReserves%5B3%5D.mealTypeId=2&userWeekReserves%5B3%5D.programDateTime=1572726600000&userWeekReserves%5B3%5D.selfId=1&userWeekReserves%5B3%5D.foodTypeId=599&` +
-      `userWeekReserves%5B4%5D.selected=true&userWeekReserves%5B4%5D.programId=166043&userWeekReserves%5B4%5D.mealTypeId=2&userWeekReserves%5B4%5D.programDateTime=1572813000000&userWeekReserves%5B4%5D.selfId=1&userWeekReserves%5B4%5D.foodTypeId=597&userWeekReserves%5B4%5D.selectedCount=1&` +
-      `userWeekReserves%5B5%5D.programId=166059&userWeekReserves%5B5%5D.mealTypeId=2&userWeekReserves%5B5%5D.programDateTime=1572813000000&userWeekReserves%5B5%5D.selfId=1&userWeekReserves%5B5%5D.foodTypeId=598&` +
-      `userWeekReserves%5B6%5D.programId=167438&userWeekReserves%5B6%5D.mealTypeId=2&userWeekReserves%5B6%5D.programDateTime=1572899400000&userWeekReserves%5B6%5D.selfId=1&userWeekReserves%5B6%5D.foodTypeId=616&` +
-      `userWeekReserves%5B7%5D.selected=true&userWeekReserves%5B7%5D.programId=166075&userWeekReserves%5B7%5D.mealTypeId=2&userWeekReserves%5B7%5D.programDateTime=1572899400000&userWeekReserves%5B7%5D.selfId=1&userWeekReserves%5B7%5D.foodTypeId=599&userWeekReserves%5B7%5D.selectedCount=1&` +
-      `&_csrf=${data._csrf}`,
+      `?weekStartDateTime=${data.weekStartDateTime}&remainCredit=82708&method%3AdoReserve=Submit&selfChangeReserveId=&weekStartDateTimeAjx=${data.weekStartDateTimeAjx}&selectedSelfDefId=1&` +
+      __get_param(data) +
+      `_csrf=${data._csrf}`,
     headers: {
       "cache-control": "no-cache",
       Cookie: data.J_S3$$ion,
@@ -140,7 +194,6 @@ function post_r3s3rv3(data) {
     __t0chB0dy(body);
   });
 }
-////////////////
 
 function post_n3xtw33k(data) {
   var options = {
@@ -171,9 +224,11 @@ function post_n3xtw33k(data) {
       weekStartDateTime: __getStart__w33k(body),
       weekStartDateTimeAjx: __getStart__Ajx(body),
       _csrf: __getC$RF(body),
-      J_S3$$ion: data.J_S3$$ion
+      J_S3$$ion: data.J_S3$$ion,
+      credit: __get_cr3d1t(body)
     });
     // __t0chB0dy(body);
+    console.log(__get_w33k_1nf0(body));
   });
 }
 
