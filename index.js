@@ -1,7 +1,7 @@
 const fs = require("fs");
 const request = require("request");
 
-var conf1g = require("./config");
+var conf1g = require("./config/config");
 
 function __getJ_S3$$ion(r3s) {
   return r3s.headers["set-cookie"][0].substring(0, 43);
@@ -73,6 +73,14 @@ function __get_data(b0dy, index) {
   };
 }
 
+function __calc_credit(data) {
+  cre = parseInt(data.credit);
+  for (let i = 0; i < data.data.length; i += 2) {
+    cre -= parseInt(data.data[i].price);
+  }
+  return cre;
+}
+
 function __get_w33k_1nf0(b0dy) {
   let i = 0;
   let arr = [];
@@ -85,35 +93,46 @@ function __get_w33k_1nf0(b0dy) {
 }
 
 function __get_param(data) {
+  console.log(data);
   let params = "";
   for (let i = 0; i < data.length; i += 2) {
-    params +=
+    let first =
+      `userWeekReserves%5B${i}%5D.selected=true&` +
       `userWeekReserves%5B${i}%5D.programId=${data[i].programId}&` +
       `userWeekReserves%5B${i}%5D.mealTypeId=2&` +
       `userWeekReserves%5B${i}%5D.programDateTime=${data[i].time}&` +
       `userWeekReserves%5B${i}%5D.selfId=1&` +
       `userWeekReserves%5B${i}%5D.foodTypeId=${data[i].foodTypeId}&` +
-      `userWeekReserves%5B${i}%5D.selected=true&` +
       `userWeekReserves%5B${i}%5D.selectedCount=1&`;
-    params +=
+    let last =
       `userWeekReserves%5B${i + 1}%5D.programId=${data[i + 1].programId}&` +
       `userWeekReserves%5B${i + 1}%5D.mealTypeId=2&` +
       `userWeekReserves%5B${i + 1}%5D.programDateTime=${data[i + 1].time}&` +
       `userWeekReserves%5B${i + 1}%5D.selfId=1&` +
       `userWeekReserves%5B${i + 1}%5D.foodTypeId=${data[i + 1].foodTypeId}&`;
+
+    params = params + first + last;
   }
+
   return params;
 }
 
 function post_r3s3rv3(data) {
-  console.log(data);
+  let url =
+    conf1g.url.r3s3rv3r0s3 +
+    `?weekStartDateTime=${data.weekStartDateTime}&remainCredit=${__calc_credit(
+      data
+    )}&method%3AdoReserve=Submit&selfChangeReserveId=&weekStartDateTimeAjx=${
+      data.weekStartDateTimeAjx
+    }&selectedSelfDefId=1&` +
+    __get_param(data.data) +
+    `_csrf=${data._csrf}`;
+
+  // console.log(url);
+
   var options = {
     method: "GET",
-    url:
-      conf1g.url.r3s3rv3r0s3 +
-      `?weekStartDateTime=${data.weekStartDateTime}&remainCredit=82708&method%3AdoReserve=Submit&selfChangeReserveId=&weekStartDateTimeAjx=${data.weekStartDateTimeAjx}&selectedSelfDefId=1&` +
-      __get_param(data) +
-      `_csrf=${data._csrf}`,
+    url: url,
     headers: {
       "cache-control": "no-cache",
       Cookie: data.J_S3$$ion,
@@ -123,70 +142,6 @@ function post_r3s3rv3(data) {
       "User-Agent": "__hahaholo__",
       "Content-Type": "application/x-www-form-urlencoded"
     }
-    // form: {
-    // "method:showNextWeek": "Submit",
-    // weekStartDateTime: data.weekStartDateTime,
-    // weekStartDateTimeAjx: data.weekStartDateTimeAjx,
-    // selectedSelfDefId: "1",
-    // selfChangeReserveId: "",
-    // _csrf: data._csrf,
-    // "userWeekReserves%5B0%5D.selected": "false",
-    // "userWeekReserves%5B0%5D.selectedCount": "0",
-    // "userWeekReserves%5B0%5D.id": "",
-    // "userWeekReserves%5B0%5D.programId": "164662",
-    // "userWeekReserves%5B0%5D.mealTypeId": "2",
-    // "userWeekReserves%5B0%5D.programDateTime": "1572035400000",
-    // "userWeekReserves%5B0%5D.selfId": "1",
-    // "userWeekReserves%5B0%5D.foodTypeId": "597",
-    // "userWeekReserves%5B0%5D.priorReserveDateStr": "null",
-    // "userWeekReserves%5B0%5D.freeFoodSelected": "false",
-    // "userWeekReserves%5B1%5D.selected": "false",
-    // "userWeekReserves%5B1%5D.selectedCount": "0",
-    // "userWeekReserves%5B1%5D.id": "",
-    // "userWeekReserves%5B1%5D.programId": "164646",
-    // "userWeekReserves%5B1%5D.mealTypeId": "2",
-    // "userWeekReserves%5B1%5D.programDateTime": "1572035400000",
-    // "userWeekReserves%5B1%5D.selfId": "1",
-    // "userWeekReserves%5B1%5D.foodTypeId": "598",
-    // "userWeekReserves%5B1%5D.priorReserveDateStr": "null",
-    // "userWeekReserves%5B1%5D.freeFoodSelected": "false",
-    // "userWeekReserves%5B2%5D.id": "",
-    // "userWeekReserves%5B2%5D.programId": "164694",
-    // "userWeekReserves%5B2%5D.mealTypeId": "2",
-    // "userWeekReserves%5B2%5D.programDateTime": "1572208200000",
-    // "userWeekReserves%5B2%5D.selfId": "1",
-    // "userWeekReserves%5B2%5D.foodTypeId": "598",
-    // "userWeekReserves%5B2%5D.priorReserveDateStr": "null",
-    // "userWeekReserves%5B2%5D.freeFoodSelected": "false",
-    // "userWeekReserves%5B3%5D.selected": "true",
-    // "userWeekReserves%5B3%5D.id": "1732857",
-    // "userWeekReserves%5B3%5D.programId": "164678",
-    // "userWeekReserves%5B3%5D.mealTypeId": "2",
-    // "userWeekReserves%5B3%5D.programDateTime": "1572208200000",
-    // "userWeekReserves%5B3%5D.selfId": "1",
-    // "userWeekReserves%5B3%5D.foodTypeId": "599",
-    // "userWeekReserves%5B3%5D.priorReserveDateStr": "null",
-    // "userWeekReserves%5B3%5D.selectedCount": "1",
-    // "userWeekReserves%5B3%5D.freeFoodSelected": "false",
-    // "userWeekReserves%5B4%5D.selected": "true",
-    // "userWeekReserves%5B4%5D.id": "1731260",
-    // "userWeekReserves%5B4%5D.programId": "164726",
-    // "userWeekReserves%5B4%5D.mealTypeId": "2",
-    // "userWeekReserves%5B4%5D.programDateTime": "1572381000000",
-    // "userWeekReserves%5B4%5D.selfId": "1",
-    // "userWeekReserves%5B4%5D.foodTypeId": "616",
-    // "userWeekReserves%5B4%5D.priorReserveDateStr": "null",
-    // "userWeekReserves%5B4%5D.selectedCount": "1",
-    // "userWeekReserves%5B4%5D.freeFoodSelected": "false",
-    // "userWeekReserves%5B5%5D.id": "",
-    // "userWeekReserves%5B5%5D.programId": "164710",
-    // "userWeekReserves%5B5%5D.mealTypeId": "2",
-    // "userWeekReserves%5B5%5D.programDateTime": "1572381000000",
-    // "userWeekReserves%5B5%5D.selfId": "1",
-    // "userWeekReserves%5B5%5D.foodTypeId": "599",
-    // "userWeekReserves%5B5%5D.priorReserveDateStr": "null",
-    // "userWeekReserves%5B5%5D.freeFoodSelected": "false"
-    // }
   };
 
   request(options, function(error, response, body) {
@@ -225,10 +180,9 @@ function post_n3xtw33k(data) {
       weekStartDateTimeAjx: __getStart__Ajx(body),
       _csrf: __getC$RF(body),
       J_S3$$ion: data.J_S3$$ion,
-      credit: __get_cr3d1t(body)
+      credit: __get_cr3d1t(body),
+      data: __get_w33k_1nf0(body)
     });
-    // __t0chB0dy(body);
-    console.log(__get_w33k_1nf0(body));
   });
 }
 

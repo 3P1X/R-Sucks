@@ -1,4 +1,5 @@
-config.js
+# config.js
 *.txt
 node_modules/
 package-lock.json
+lists/
