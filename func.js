@@ -1,4 +1,5 @@
 const request = require("request");
+const rq = require("request-promise");
 
 const {
   __get_w33k_1nf0,
@@ -94,7 +95,7 @@ function post_n3xtw33k(data) {
 
   request(options, function(error, response, body) {
     if (error) return { error: error };
-    post_r3s3rv3({
+    return post_r3s3rv3({
       weekStartDateTime: __get_start_w33k(body),
       weekStartDateTimeAjx: __get_start_Ajx(body),
       _csrf: __get_c$rf(body),
@@ -131,27 +132,27 @@ function get_pan3lR0S3(J_S3$$ion) {
   });
 }
 
-function get_R0S3__(data) {
-  var options = {
-    method: "GET",
-    url: conf1g.url.r0s3_level_1,
-    headers: {
-      "cache-control": "no-cache",
-      Cookie: data,
-      "Accept-Encoding": "gzip, deflate",
-      "Cache-Control": "no-cache",
-      Accept: "*/*",
-      "User-Agent": "__hahaholo__",
-      "Content-Type": "application/x-www-form-urlencoded"
-    }
-  };
+// function get_R0S3__(data) {
+//   var options = {
+//     method: "GET",
+//     url: conf1g.url.r0s3_level_1,
+//     headers: {
+//       "cache-control": "no-cache",
+//       Cookie: data,
+//       "Accept-Encoding": "gzip, deflate",
+//       "Cache-Control": "no-cache",
+//       Accept: "*/*",
+//       "User-Agent": "__hahaholo__",
+//       "Content-Type": "application/x-www-form-urlencoded"
+//     }
+//   };
 
-  request(options, function(error, response, body) {
-    if (error) return { error: error };
-  });
-}
+//   request(options, function(error, response, body) {
+//     if (error) return { error: error };
+//   });
+// }
 
-function post_Js3c(data, user) {
+async function post_Js3c(data, user) {
   var options = {
     method: "POST",
     url: conf1g.url.j_sec,
@@ -169,34 +170,37 @@ function post_Js3c(data, user) {
       password: user.pass,
       _csrf: data.c$rf,
       login: "%D9%88%D8%B1%D9%88%D8%AF"
-    }
+    },
+    resolveWithFullResponse: true,
+    simple: false
   };
 
-  request(options, function(error, response, body) {
-    if (error) return { error: error };
-
-    return get_pan3lR0S3(__getJ_S3$$ion(response));
+  return await rq(options).then(response => {
+    return __getJ_S3$$ion(response);
   });
 }
 
-module.exports.d0_da_g3t = function(user) {
+async function get_1n1t1al_JS3$_c$rf() {
   var options = {
     method: "GET",
     url: conf1g.url.r0s3_level_1,
     headers: {
       "User-Agent": "__hahaholo__"
-    }
+    },
+    resolveWithFullResponse: true
   };
 
-  request(options, function(error, response, body) {
-    if (error) return { error: error };
-
-    return post_Js3c(
-      {
-        J_S3$$ion: __getJ_S3$$ion(response),
-        c$rf: __get_c$rf(body)
-      },
-      user
-    );
+  return await rq(options).then(response => {
+    return {
+      J_S3$$ion: __getJ_S3$$ion(response),
+      c$rf: __get_c$rf(response.body)
+    };
   });
+}
+
+module.exports.d0_da_g3t = async function(user) {
+  let J$_C$ = await get_1n1t1al_JS3$_c$rf();
+  let J_S3$$ion = await post_Js3c(J$_C$, user);
+  let 
+  return a;
 };
