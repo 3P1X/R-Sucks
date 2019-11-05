@@ -38,7 +38,7 @@ function g3n_params(data) {
   return params;
 }
 
-function post_r3s3rv3(data) {
+async function post_r3s3rv3(data) {
   let url =
     conf1g.url.r3s3rv3r0s3 +
     `?weekStartDateTime=${data.weekStartDateTime}&remainCredit=${__calc_cr3d1t(
@@ -63,14 +63,13 @@ function post_r3s3rv3(data) {
     }
   };
 
-  request(options, function(error, response, body) {
-    if (error) return { error: error };
+  return await rq(options).then(body => {
     __t0uchB0dy(body);
-    return { body, error: null };
+    return body;
   });
 }
 
-function post_n3xtw33k(data) {
+async function post_n3xtw33k(data) {
   var options = {
     method: "POST",
     url: conf1g.url.r3s3rv3r0s3,
@@ -93,20 +92,19 @@ function post_n3xtw33k(data) {
     }
   };
 
-  request(options, function(error, response, body) {
-    if (error) return { error: error };
-    return post_r3s3rv3({
+  return await rq(options).then(body => {
+    return {
       weekStartDateTime: __get_start_w33k(body),
       weekStartDateTimeAjx: __get_start_Ajx(body),
       _csrf: __get_c$rf(body),
       J_S3$$ion: data.J_S3$$ion,
       credit: __get_cr3d1t(body),
       data: __get_w33k_1nf0(body)
-    });
+    };
   });
 }
 
-function get_pan3lR0S3(J_S3$$ion) {
+async function get_pan3lR0S3(J_S3$$ion) {
   var options = {
     method: "GET",
     url: conf1g.url.pan3l_r0s3,
@@ -121,14 +119,13 @@ function get_pan3lR0S3(J_S3$$ion) {
     }
   };
 
-  request(options, function(error, response, body) {
-    if (error) return { error: error };
-    return post_n3xtw33k({
+  return await rq(options).then(body => {
+    return {
       weekStartDateTime: __get_start_w33k(body),
       weekStartDateTimeAjx: __get_start_Ajx(body),
       _csrf: __get_c$rf(body),
       J_S3$$ion: J_S3$$ion
-    });
+    };
   });
 }
 
@@ -201,6 +198,8 @@ async function get_1n1t1al_JS3$_c$rf() {
 module.exports.d0_da_g3t = async function(user) {
   let J$_C$ = await get_1n1t1al_JS3$_c$rf();
   let J_S3$$ion = await post_Js3c(J$_C$, user);
-  let 
-  return a;
+  let cur_w33k_time = await get_pan3lR0S3(J_S3$$ion);
+  let w33k_info = await post_n3xtw33k(cur_w33k_time);
+  let r3sp0ns3 = await post_r3s3rv3(w33k_info);
+  return r3sp0ns3;
 };
