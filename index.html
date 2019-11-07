@@ -1,0 +1,436 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    var _csrf_token_headers =  {'X-CSRF-TOKEN' : '9c33c118-8b84-4705-96e8-f4a4a396e9c0'};
+    function addUniqueParam(jForm) {
+        jForm.action = jForm.action;
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+<head>
+    <!--[if lte IE 6]>
+    <meta http-equiv="REFRESH" content="0;url=/note/ie6_error.html">
+    <![ENDIF]-->
+    
+        <title>سماد(سامانه مدیریت امور دانشجویی)</title>
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="/styles/newui/favicon_v0.16/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/styles/newui/favicon_v0.16/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/styles/newui/favicon_v0.16/favicon-16x16.png">
+    
+    <meta name="heading" content="سماد- سامانه مدیریت امور دانشجویی"/>
+    <!--<meta name="menu" content="Login"/>-->
+    
+    
+    
+        <meta name="menu" content="AnonymousMenu"/>
+    
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/styles/farsi-fuse/theme.css">
+    <link rel="stylesheet" href="/styles/newui/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/newui/newui.css">
+    <link rel="stylesheet" href="/styles/newui/newui-master.css">
+    <link rel="stylesheet" href="/styles/newui/newui-login.css">
+    <link rel="stylesheet" href="/styles/newui/fonts.css">
+
+    <!-- JavaScripts Required by DWR -->
+    <script type="text/javascript">var context_path = "";</script>
+    <script type="text/javascript" src="/scripts/dwr/dwr-service.js"></script>
+    <script type='text/javascript' src='/scripts/dwr/engine.js'></script>
+    <script type='text/javascript' src='/scripts/dwr/util.js'></script>
+    <link href='/styles/KeyBoardStyle.css' rel="stylesheet" type="text/css">
+    <script src='/scripts/keyboard.js' type="text/javascript"></script>
+    <script type="text/javascript">
+        function click_loading() {
+            document.getElementById("loading").style.display = "block";
+        }
+
+        function show_loading(show) {
+            if (show) {
+                document.getElementById("loading").style.display = "block";
+            } else {
+                document.getElementById("loading").style.display = "none";
+            }
+        }
+
+        /*function refreshCaptcha() {
+            document.getElementById("captcha_img").src = "/captcha.jpg?" + makeid();
+        }
+
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < 8; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            return text;
+        }
+
+        function doCaptcha(res) {
+            document.forms["loginForm"].submit();
+        }*/
+
+        function displayCreatorSiteWindows() {
+            var stNo = DWRUtil.getValue('studentNumberInput');
+            window.open('http://www.dadekavan.ir' + stNo, "mywindow", "menubar=1,resizable=1,width=2048,height=750");
+        }
+
+        function displayOrganSiteWindows() {
+            var stNo = DWRUtil.getValue('studentNumberInput');
+            window.open('http://www.kntu.ac.ir' + stNo, "mywindow", "menubar=1,resizable=1,width=2048,height=750");
+        }
+
+        function load_cas_server_login_page() {
+            window.location.href = '?service=';
+        }
+    </script>
+</head>
+
+
+
+
+
+        <script type="text/javascript" src="/struts/js/base/jquery-2.2.4.min.js"></script>
+        <script type="text/javascript" src="/struts/js/base/jquery-ui.min.js?s2j=4.0.2"></script>
+            <script type="text/javascript"
+                    src="/struts/i18n/datepicker-fa.min.js?s2j=4.0.2"></script>
+<script type="text/javascript" src="/struts/js/plugins/jquery.form.min.js?s2j=4.0.2"></script>
+<script type="text/javascript" src="/struts/js/plugins/jquery.subscribe.min.js?s2j=4.0.2"></script>
+
+<script type="text/javascript" src="/struts/js/struts2/jquery.struts2.min.js?s2j=4.0.2"></script>
+
+<script type="text/javascript">
+    $(function () {
+        jQuery.struts2_jquery.version = "4.0.2";
+        jQuery.struts2_jquery.loadAtOnce = true;
+        jQuery.scriptPath = "/struts/";
+        jQuery.struts2_jquery.local = "fa";
+        jQuery.struts2_jquery.gridLocal = "fa";
+        jQuery.struts2_jquery.timeLocal = "fa";
+        jQuery.struts2_jquery.datatablesLocal = "fa";
+        jQuery.ajaxSettings.traditional = true;
+
+        jQuery.ajaxSetup({
+            cache: false
+        });
+
+        jQuery.struts2_jquery.require("js/struts2/jquery.ui.struts2.min.js?s2j=4.0.2");
+
+    });
+</script>
+
+    <link id="jquery_theme_link" rel="stylesheet"
+          href="/struts/themes/smoothness/jquery-ui.css?s2j=4.0.2" type="text/css"/>
+
+<body id="login" style="background:url('/images/sky2.jpg') no-repeat fixed !important">
+<div style="width: 100%;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div id="loading" class="loading_div">
+    <img alt="Loading ..." class="loading_icon" align="absmiddle" src="/images/ajax-loader-big.gif"/>
+</div>
+<div style="top:0px; left:0px; right:0px; bottom:0; background:transparent !important; margin:0; position: absolute;">
+    
+    
+
+    <div align="center" style="background:transparent !important">
+        
+        
+        
+        
+        <div style="margin-top:4%;">
+            <div>
+                <div id="viewHelpDialog"
+>
+
+                    <div align="center">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <img src="/images/ajax-loader.gif"/>
+                    </div>
+                </div>
+<script type='text/javascript'>
+jQuery(document).ready(function () { 
+	var options_viewHelpDialog = {};
+	options_viewHelpDialog.height = 300;
+	options_viewHelpDialog.width = 400;
+	options_viewHelpDialog.title = "\u0628\u0627\u0632\u06CC\u0627\u0628\u06CC \u06A9\u0644\u0645\u0647 \u0639\u0628\u0648\u0631";
+	options_viewHelpDialog.show = "slide";
+	options_viewHelpDialog.hide = "slide";
+	options_viewHelpDialog.autoOpen = false;
+	options_viewHelpDialog.modal = true;
+	options_viewHelpDialog.opentopics = "openRemoteDialog1s";
+	options_viewHelpDialog.jqueryaction = "dialog";
+	options_viewHelpDialog.id = "viewHelpDialog";
+	options_viewHelpDialog.href = "#";
+
+jQuery.struts2_jquery_ui.bind(jQuery('#viewHelpDialog'),options_viewHelpDialog);
+
+ });  
+</script>
+
+
+                
+
+            </div>
+            <table align="center"
+                   class="login-container"
+                   border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td valign="top">
+                        <h3 class="text-center mt-2" style="color: #333333;">ورود به سامانه سماد</h3>
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td valign="top" id="where-am-i">
+                        <form action="/j_security_check" style="display: flex" method="post"
+                              name="loginForm"
+                              id="loginForm">
+                            
+                            <img style="display: table-cell;margin:29px 10px; line-height:26px; float:right;"
+                                 class="ui-icon-home"
+                                 alt="/res?creatorLogoId=dab_logo.png&dl=false"
+                                 src='/styles/newui/images/logo.png' alt='داده کاوان اندیشه برتر'
+                                 height='100'
+                                 width='100'/>
+                            <input type="hidden" name="_csrf"
+                                   value="9c33c118-8b84-4705-96e8-f4a4a396e9c0"/>
+                            <table border="0"
+                                   style="width: 375px;text-align:right; background:none; padding: 20px 12px;"
+                                   cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" valign="top" style="width:
+                                    245px;
+                                    ">
+                                        
+                                            <table style="text-align:right; width: 100%" border="0" cellspacing="0"
+                                                   cellpadding="0">
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div class="form-group">
+                                                            <label for="username"
+                                                                   class="required form-label">نام کاربری</label>
+                                                            <input class="form-input" type="text" dir="ltr"
+                                                                   name="username" tabindex="1" id="username">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div class="form-group">
+                                                            <label for="password"
+                                                                   class="required form-label">رمز عبور</label>
+                                                            <input class="form-input" type="password" dir="ltr"
+                                                                   name="password" tabindex="2" id="password">
+                                                                
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                    
+                                                
+                                                    
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td valign="top">
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td class="text-center">
+                                                    
+                                                        <input type="submit" class="btn-success btn-login"
+                                                               style="width: 100%;font-size: 17px;"
+                                                               onClick="click_loading()"
+                                                               name="login"
+                                                               value="ورود"
+                                                               tabindex="4" id="login_btn_submit"/>
+                                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+        
+        
+            <div class="login_message">
+                <div align="center" class="login-messages">
+                    <ul>
+                        
+                            <li style="margin:40px;padding: 10px 40px 10px 5px; list-style: none;">
+                                <img style="float: right;" src="/res?id=12434&dl=false" alt="" width="60" height="60" /><p><strong>قابل توجه اساتید، کارکنان و دانشجویان گرامی</strong></p> 
+<p><strong>باسلام&nbsp;</strong></p> 
+<p><strong>احتراما، برنامه غذایی &nbsp;تا پایان&nbsp;آبان ماه&nbsp;جهت بهره برداری شما عزیزان&nbsp; در سامانه رفاهی بارگذاری شد.</strong></p> 
+<p><strong>لازم به ذکراست که در منوی هفته آخر، غذای&nbsp;آبگوشت&nbsp;&nbsp;با توجه&nbsp;به شرایط و امکانات طبخ&nbsp; درسلف های&nbsp;پردیس مکانیک و هوافضا با محدودیت&nbsp; رزرو&nbsp; بارگذاری شده است .</strong></p> 
+<p><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; با تشکر، اداره تغذیه</strong></p>
+                            </li>
+                        
+                            <li style="margin:40px;padding: 10px 40px 10px 5px; list-style: none;">
+                                <img style="float: right;" src="/res?id=12434&dl=false" alt="" width="60" height="60" /><p><strong>قابل توجه دانشجویان گرامی</strong></p> 
+<p><strong>باسلام، با توجه به اینکه روزانه تعداد قابل توجهی غذا&nbsp;توسط دانشجویان رزرو میشود و غذا را &nbsp;میل نمیکنید.&nbsp; لازم است مطلع باشید که قیمت غذای تمام شده&nbsp; چندین برابر مبلغی است که شما عزیزان بابت آن پرداخت میکنید و درصورت&nbsp; رزرو و نخوردن غذا بارسنگینی از نظر مالی برای دانشگاه در بر خواهد داشت.</strong></p> 
+<p><strong>لذا با توجه به اینکه تعداد این آمار روبه افزایش است و در صورت ادامه این روند جریمه نخوردن غذا به مانند دیگر دانشگاه ها فعال خواهد شد.</strong></p> 
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>&nbsp;با تشکر. اداره تغذیه</strong></p>
+                            </li>
+                        
+                            <li style="margin:40px;padding: 10px 40px 10px 5px; list-style: none;">
+                                <img style="float: right;" src="/res?id=13954&dl=false" alt="" width="60" height="60" /><p><strong>اپلیکیشن سفیر نصیر (تحت اندروید) منتشر شد.</strong></p> 
+<p><strong>سفیر نصیر نزدیک ترین راه به دانشگاه.</strong></p> 
+<p><strong>اطلاع از خدمات معاونت فرهنگی و دانشجویی</strong></p> 
+<p><strong>و با قابلیت پرسش و پاسخ و نظرسنجی</strong></p> 
+<p><strong>لینک دانلود:</strong></p> 
+<p><a href="http://kntu.khorshidsoft.com" rel="nofollow"><strong>http://kntu.khorshidsoft.com</strong></a></p>
+                            </li>
+                        
+                            <li style="margin:40px;padding: 10px 40px 10px 5px; list-style: none;">
+                                <img style="float: right;" src="/res?id=13954&dl=false" alt="" width="60" height="60" /><p><strong>کانال اطلاع رسانی کلیه خدمات حوزه معاونت دانشجویی و فرهنگی دانشگاه برای دانشجویان, اعضا هیات علمی و کارکنان&nbsp; دانشگاه</strong></p> 
+<p><a href="http://t.me/kntu_sm" rel="nofollow"><strong>http://t.me/kntu_sm</strong></a></p> 
+<p><strong>کانال ما در پیام‌رسان‌های داخلی </strong></p> 
+<p><strong>https://eitaa.com/kntu_sm</strong></p> 
+<p><strong>http://sapp.ir/kntu_sm</strong></p> 
+<p><strong>https://iGap.net/Kntu_sm</strong></p>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        
+        <div id="copyright-dab" class="d-flex justify-content-between align-items-center"
+             style="width: 100%; background-color:rgba(242,242,242, 0.6) !important;color: #ffffff; position: fixed;bottom: 0;">
+
+            <div class="dab-copyright2">
+                <a style="display: table" onclick="displayCreatorSiteWindows()" href="">
+                    
+                    <span style="display: table-cell; vertical-align: middle;">داده کاوان اندیشه برتر</span>
+                </a>
+            </div>
+
+            <div class="dab-copyright3">
+                <a style="display: table" onclick="displayOrganSiteWindows()" href="">
+                    <span style="display: table-cell; vertical-align: middle;">دانشگاه صنعتی خواجه نصیر الدین طوسی</span>
+                    
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="androidModal" tabindex="-1" role="dialog" aria-labelledby="androidModal">
+    <div class="modal-dialog" style="width: 100%" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="font-size: 52px; padding-bottom: 50px">
+                <div>سلام. اپلیکیشن موبایل سماد منتشر شد!</div>
+                <div>پیشنهاد می‌کنیم این برنامه را در گوشی خود دانلود و نصب کنید تا از این پس، دسترسی راحت‌تر و سریع‌تری به خدمات دانشجویی داشته باشید.</div>
+            </div>
+            <div class="modal-footer" style="padding-bottom: 100px;">
+                <div>
+                    <button type="button" style="font-size: 52px;padding: 20px 40px; with: 400px" id="btn-mobile-google"
+                            class="btn btn-primary">دریافت از گوگل پلی</button>
+                <div style="font-size:72px; height:72px" >  </div>
+                    <button type="button" style="font-size: 52px;padding: 20px 40px; with: 500px" id="btn-mobile-ok"
+                            class="btn btn-primary">دانلود اپلیکیشن</button>
+                    <button type="button" style="font-size: 32px;margin-right: 100px;" class="btn btn-default"
+                            data-dismiss="modal">فعلاً نه</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/styles/newui/bootstrap.min.js"></script>
+<script type="text/javascript">
+    var mobileModal = 1;
+    if (mobileModal === 1) {
+        $(document).ready(function () {
+            var ua = navigator.userAgent.toLowerCase();
+            var isAndroid = ua.indexOf("android") > -1;
+            if (isAndroid) {
+                $('#androidModal').modal();
+                $('#btn-mobile-ok').click(function (e) {
+                    e.preventDefault();
+                    window.location = '/softwares/app/samad.apk';
+                });
+                $('#btn-mobile-google').click(function(e) {
+                    e.preventDefault();
+                    window.location = 'https://play.google.com/store/apps/details?id=com.samad';
+                })
+            }
+        })
+    }
+</script>
+
+</body>
