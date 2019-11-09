@@ -46,7 +46,7 @@ function __t0uchB0dy(b0dy) {
       return console.log(err);
     }
 
-    console.log("b0dy t0ch3d !");
+    // console.log("b0dy t0ch3d !");
   });
 }
 
@@ -66,14 +66,15 @@ function __get_data(b0dy, index) {
     programId: b0dy.substring(start + 823, start + 829),
     time: b0dy.substring(start + 1537, start + 1550),
     foodTypeId: b0dy.substring(start + 2249, start + 2252),
-    price: __get_pr1ce(b0dy, index)
+    price: __get_pr1ce(b0dy, index),
+    name: __get_F00d_nam3(b0dy, index)
   };
 }
 
-function __calc_cr3d1t(data) {
+function __calc_cr3d1t(data, days) {
   cre = parseInt(data.credit);
   for (let i = 0; i < data.data.length; i += 2) {
-    cre -= parseInt(data.data[i].price);
+    if (days[i / 2]) cre -= parseInt(data.data[i].price);
   }
   return cre;
 }
@@ -87,6 +88,15 @@ function __get_w33k_1nf0(b0dy) {
   }
 
   return arr;
+}
+
+function __get_F00d_nam3(b0dy, index) {
+  let start = b0dy.indexOf(`xstooltip_hide('foodPriceTooltip${index}');`) + 136;
+  let i;
+  for (i = start; ; i++) {
+    if (b0dy.charAt(i) === "\r") break;
+  }
+  return b0dy.substring(start, i);
 }
 
 module.exports = {
