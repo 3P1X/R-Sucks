@@ -1,5 +1,5 @@
 const request = require("request");
-const rq = require("request-promise");
+const rq = require("request-promise-native");
 
 const {
   __get_w33k_1nf0,
@@ -59,7 +59,8 @@ async function post_r3s3rv3(data, days) {
   let url =
     conf1g.url.r3s3rv3r0s3 +
     `?weekStartDateTime=${data.weekStartDateTime}&remainCredit=${__calc_cr3d1t(
-      data
+      data,
+      days
     )}&method%3AdoReserve=Submit&selfChangeReserveId=&weekStartDateTimeAjx=${
       data.weekStartDateTimeAjx
     }&selectedSelfDefId=1&` +
@@ -166,7 +167,7 @@ async function get_pan3lR0S3(J_S3$$ion) {
 //   });
 // }
 
-async function post_Js3c(data, user) {
+async function post_Js3c(data, user, cb) {
   var options = {
     method: "POST",
     url: conf1g.url.j_sec,
@@ -217,7 +218,7 @@ module.exports.d0_da_g3t = async function(user) {
   let J_S3$$ion = await post_Js3c(J$_C$, user);
   let cur_w33k_time = await get_pan3lR0S3(J_S3$$ion);
   let w33k_info = await post_n3xtw33k(cur_w33k_time);
-  let r3sp0ns3 = await post_r3s3rv3(w33k_info);
+  let r3sp0ns3 = await post_r3s3rv3(w33k_info, user.days);
 
   if (r3sp0ns3.search("successMessages") > 0) return "Successfully done";
 
