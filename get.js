@@ -71,14 +71,6 @@ function __get_data(b0dy, index) {
   };
 }
 
-function __calc_cr3d1t(data, days) {
-  cre = parseInt(data.credit);
-  for (let i = 0; i < data.data.length; i += 2) {
-    if (days[i / 2]) cre -= parseInt(data.data[i].price);
-  }
-  return cre;
-}
-
 function __get_w33k_1nf0(b0dy) {
   let i = 0;
   let arr = [];
@@ -99,15 +91,24 @@ function __get_F00d_nam3(b0dy, index) {
   return b0dy.substring(start, i);
 }
 
+function getP(name, priority) {
+  for (let i = 0; i < priority.length; i++) {
+    if (name.includes(priority[i])) {
+      return i;
+    }
+  }
+  return 30;
+}
+
 module.exports = {
   __get_w33k_1nf0,
-  __calc_cr3d1t,
   __get_data,
   __get_pr1ce,
   __t0uchB0dy,
-  __get_cr3d1t,
   __get_start_w33k,
   __get_start_Ajx,
   __get_c$rf,
-  __getJ_S3$$ion
+  __getJ_S3$$ion,
+  __get_cr3d1t,
+  getP
 };
