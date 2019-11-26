@@ -91,7 +91,7 @@ function __get_F00d_nam3(b0dy, index) {
   return b0dy.substring(start, i);
 }
 
-function getP(name, priority) {
+function __getP(name, priority) {
   for (let i = 0; i < priority.length; i++) {
     if (name.includes(priority[i])) {
       return i;
@@ -110,5 +110,5 @@ module.exports = {
   __get_c$rf,
   __getJ_S3$$ion,
   __get_cr3d1t,
-  getP
+  __getP
 };

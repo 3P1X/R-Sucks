@@ -8,6 +8,7 @@ app.use(express.json());
 
 app.post("/back_off_b1tch_u_dont_wanna_t3st_me", async (req, res) => {
   let resData = await d0_da_g3t(req.body);
+  console.log(resData);
   res.json({
     stats: resData
   });
